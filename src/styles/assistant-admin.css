@@ -1,0 +1,869 @@
+/* =========================================================
+   01. GLOBAL LAYOUT SAFEGUARDS
+   ========================================================= */
+:root {
+  --content-width: 1240px;
+  --focus-ring: 0 0 0 3px rgba(232, 166, 75, 0.35);
+}
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.page-content,
+.feature-page,
+.admin-page {
+  min-width: 0;
+}
+.page-intro,
+.feature-page .page-intro {
+  padding-inline: 0;
+}
+.btn {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.35;
+}
+.form-row > * {
+  min-width: 0;
+}
+input,
+select,
+textarea {
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   02. FLOATING VISITOR ASSISTANT
+   ========================================================= */
+.assistant-launch {
+  position: fixed;
+  z-index: 91;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 52px;
+  padding: 0 19px;
+  border: 1px solid #f7d69d;
+  background: #e8a64b;
+  color: #10252b;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 12px 32px #0005;
+}
+.assistant-launch:hover {
+  transform: translateY(-2px);
+  background: #f2c47c;
+}
+.assistant-panel {
+  position: fixed;
+  z-index: 90;
+  right: 24px;
+  bottom: 88px;
+  width: min(390px, calc(100vw - 32px));
+  max-height: min(650px, calc(100svh - 120px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fbfaf6;
+  color: #173d39;
+  border: 1px solid #d8d2c4;
+  box-shadow: 0 24px 70px #0007;
+}
+.assistant-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 18px;
+  background: #102f2c;
+  color: white;
+}
+.assistant-avatar {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e8a64b;
+  color: #10252b;
+  flex: none;
+}
+.assistant-head > div {
+  display: grid;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+.assistant-head strong {
+  font:
+    17px Georgia,
+    serif;
+}
+.assistant-head small {
+  font-size: 10px;
+  color: #c4d1cb;
+}
+.assistant-head > button,
+.assistant-input button {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+.assistant-body {
+  padding: 17px;
+  overflow-y: auto;
+}
+.assistant-welcome {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 14px;
+  color: #50645d;
+}
+.assistant-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.assistant-options button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 42px;
+  padding: 10px;
+  border: 1px solid #e1ddd2;
+  background: #fff;
+  color: #25483f;
+  text-align: left;
+  font-size: 11px;
+}
+.assistant-options button:hover {
+  border-color: #b78b4b;
+  background: #f8f4ea;
+}
+.assistant-response {
+  margin-top: 14px;
+  padding: 14px;
+  background: #edf0e9;
+  border-left: 3px solid #b78b4b;
+}
+.assistant-response strong {
+  font:
+    17px Georgia,
+    serif;
+}
+.assistant-response p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #5e6d65;
+  margin: 8px 0;
+}
+.assistant-response a {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8a642f;
+}
+.assistant-input {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid #e7e2d8;
+  background: white;
+}
+.assistant-input input {
+  flex: 1;
+  width: 100%;
+  border: 1px solid #d9d6cd;
+  padding: 11px 12px;
+  color: #173d39;
+  font-size: 12px;
+}
+.assistant-input button {
+  background: #173d39;
+  color: white;
+}
+.assistant-disclaimer {
+  padding: 0 16px 13px;
+  margin: 0;
+  background: white;
+  color: #8a938c;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   03. ADMIN DASHBOARD PREVIEW
+   ========================================================= */
+.admin-page {
+  background: #f5f3ed;
+  color: #173d39;
+  min-height: 70vh;
+  padding-top: 145px;
+}
+.admin-heading {
+  max-width: var(--content-width);
+  margin: 0 auto 25px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.admin-heading h1 {
+  font:
+    clamp(40px, 6vw, 68px)/1.04 Georgia,
+    serif;
+  font-weight: 400;
+  margin: 15px 0 8px;
+}
+.admin-heading h1 em {
+  color: #a17b43;
+}
+.admin-heading p {
+  margin: 0;
+  color: #738078;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.btn-outline-dark {
+  background: transparent;
+  color: #173d39;
+  border: 1px solid #b9b9aa;
+}
+.admin-notice,
+.admin-stat-grid,
+.admin-table-wrap,
+.admin-next {
+  max-width: var(--content-width);
+  margin: 0 auto 22px;
+}
+.admin-notice {
+  padding: 15px 18px;
+  background: #fff4df;
+  border: 1px solid #ead6ae;
+  color: #795b2d;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.admin-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+.admin-stat {
+  display: grid;
+  grid-template-columns: 35px 1fr;
+  align-items: center;
+  gap: 7px 12px;
+  padding: 22px;
+  background: white;
+  border: 1px solid #e6e2d8;
+  min-width: 0;
+}
+.admin-stat svg {
+  grid-row: span 2;
+  color: #a17b43;
+  width: 24px;
+  height: 24px;
+}
+.admin-stat span {
+  font-size: 11px;
+  color: #78847d;
+}
+.admin-stat strong {
+  font:
+    30px Georgia,
+    serif;
+  color: #173d39;
+}
+.admin-table-wrap {
+  overflow-x: auto;
+  background: white;
+  border: 1px solid #e6e2d8;
+}
+.admin-table-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px 22px;
+  border-bottom: 1px solid #e8e5dd;
+}
+.admin-table-title h2,
+.admin-next h2 {
+  font:
+    24px Georgia,
+    serif;
+  font-weight: 400;
+  margin: 0;
+}
+.admin-table-title span {
+  font-size: 10px;
+  color: #829087;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+  font-size: 11px;
+}
+.admin-table th,
+.admin-table td {
+  padding: 15px 17px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #eeece6;
+}
+.admin-table th {
+  background: #f8f7f2;
+  color: #68776f;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.admin-table td {
+  color: #29483f;
+}
+.admin-table td small {
+  display: block;
+  margin-top: 5px;
+  color: #87918a;
+  font-size: 10px;
+}
+.admin-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: #78847d;
+}
+.admin-empty svg {
+  color: #a17b43;
+}
+.admin-empty h3 {
+  font:
+    22px Georgia,
+    serif;
+  color: #173d39;
+}
+.admin-empty p {
+  font-size: 12px;
+}
+.admin-empty a,
+.admin-next a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #946c35;
+  font-size: 11px;
+  font-weight: 700;
+}
+.admin-next {
+  padding: 25px;
+  background: #173d39;
+  color: white;
+}
+.admin-next p {
+  max-width: 780px;
+  color: #d1ddd6;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.admin-next a {
+  color: #f0c77f;
+}
+
+/* =========================================================
+   04. NAVIGATION + RESPONSIVE TRANSPARENT NAVBAR
+   ========================================================= */
+.header {
+  z-index: 100;
+  transition:
+    background 0.35s ease,
+    backdrop-filter 0.35s ease;
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+}
+.nav {
+  min-width: 0;
+}
+.nav-dropdown {
+  flex: none;
+}
+.nav-dropdown-menu {
+  z-index: 110;
+}
+.menu-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 1. Transparent Navbar (Desktop, Tablet, Mobile) */
+.header:not(.scrolled) {
+  background: transparent !important;
+  border-bottom: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+/* 2. Solid Navbar on Scroll (Desktop, Tablet, Mobile) */
+.header.scrolled {
+  background: rgba(4, 19, 27, 0.94) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  backdrop-filter: blur(18px) !important;
+  border-bottom: 1px solid #ffffff15 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+@media (max-width: 1100px) and (min-width: 761px) {
+  .header {
+    padding-inline: 3vw;
+  }
+  .brand {
+    gap: 8px;
+  }
+  .brand img {
+    width: 40px;
+    height: 40px;
+  }
+  .nav {
+    gap: 11px;
+  }
+  .nav > a,
+  .nav-dropdown-trigger {
+    font-size: 9px;
+  }
+  .nav-book {
+    padding: 11px 12px;
+  }
+}
+
+@media (max-width: 760px) {
+  .header {
+    height: 72px;
+    padding-inline: 18px;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .nav {
+    top: 72px;
+    max-height: calc(100svh - 72px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .nav.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    max-height: calc(100svh - 72px);
+    padding: 10px 22px 22px;
+  }
+  .nav-dropdown {
+    height: auto;
+    display: block;
+    width: 100%;
+  }
+  .nav-dropdown-trigger {
+    width: 100%;
+    min-height: 48px;
+    justify-content: space-between;
+  }
+  .nav-dropdown-menu {
+    position: static;
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+  }
+  .brand small {
+    font-size: 7px;
+  }
+  .assistant-launch {
+    right: 14px;
+    bottom: 14px;
+    min-height: 48px;
+    padding: 0 15px;
+  }
+  .assistant-panel {
+    right: 12px;
+    bottom: 72px;
+    width: min(390px, calc(100vw - 24px));
+    max-height: calc(100svh - 90px);
+  }
+  .admin-page {
+    padding: 110px 20px 65px;
+  }
+  .admin-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .admin-stat-grid {
+    grid-template-columns: 1fr;
+  }
+  .admin-stat {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .assistant-options {
+    grid-template-columns: 1fr;
+  }
+  .assistant-launch span {
+    display: none;
+  }
+  .assistant-launch {
+    width: 49px;
+    padding: 0;
+    justify-content: center;
+  }
+  .brand {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  .brand img {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assistant-launch,
+  .assistant-panel * {
+    transition: none !important;
+  }
+}
+
+/* =========================================================
+   05. GIFT VOUCHER ENQUIRY PAGE
+   ========================================================= */
+.voucher-layout {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 6vw, 80px);
+  align-items: center;
+}
+.voucher-copy h2 {
+  font:
+    clamp(38px, 5vw, 58px)/1.05 Georgia,
+    serif;
+  font-weight: 400;
+  color: #173d39;
+  margin: 30px 0 14px;
+}
+.voucher-copy h2 em {
+  color: #a17b43;
+}
+.voucher-copy > p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #718078;
+  max-width: 470px;
+}
+.voucher-art {
+  min-height: 250px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  color: #f8edda;
+  background: radial-gradient(
+    circle at 90% 10%,
+    #55766b 0,
+    #173d39 45%,
+    #0c2828 100%
+  );
+  border: 1px solid #b78b4b;
+  box-shadow: 0 20px 45px #173d3920;
+}
+.voucher-art svg {
+  color: #e8bd78;
+}
+.voucher-art span,
+.voucher-art small {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+}
+.voucher-art strong {
+  font:
+    clamp(30px, 4vw, 44px)/1.05 Georgia,
+    serif;
+  font-weight: 400;
+}
+.voucher-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 24px;
+  color: #748078;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.voucher-note svg {
+  flex: none;
+  color: #a17b43;
+}
+@media (max-width: 760px) {
+  .voucher-layout {
+    grid-template-columns: 1fr;
+  }
+  .voucher-art {
+    min-height: 220px;
+  }
+}
+
+/* =========================================================
+   06. ROUNDED CORNER SYSTEM
+   ========================================================= */
+/* ---- Buttons ---- */
+.btn,
+button.btn,
+a.btn,
+.btn-gold,
+.btn-glass,
+.btn-dark,
+.nav-book,
+.page-link-row a,
+.text-link,
+.package-select,
+.menu-toggle {
+  border-radius: 14px;
+}
+
+/* Fix stretched and squished buttons in contact sections */
+.contact-line + .btn,
+.booking-copy > .btn,
+.booking-copy > a.btn,
+.contact-line + a.btn {
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  margin-top: 25px !important;
+  margin-bottom: 10px;
+}
+
+/* Small icon-only buttons become circular */
+.back-top,
+.lightbox-close,
+.circle-arrow,
+.hero-index button,
+.tour-controls > button,
+.assistant-input button,
+.assistant-head > button,
+.reference-success button,
+.play-icon {
+  border-radius: 50%;
+}
+
+/* ---- Cards ---- */
+.card,
+.info-card,
+.page-media-card,
+.package-card,
+.compare-card,
+.aside-card,
+.review-invite,
+.offer-feature,
+.room-detail,
+.day-visit-media,
+.tour-viewer,
+.portal-card,
+.estimation-box,
+.estimator-box,
+.admin-notice,
+.admin-stat,
+.admin-table-wrap,
+.admin-next,
+.booking-panel,
+.review-form,
+.voucher-art,
+.booking-form,
+.faq-item,
+.gallery-tile {
+  border-radius: 20px;
+}
+
+/* ---- Media containers ---- */
+.experience-card,
+.intro-image,
+.day-photo,
+.room-main,
+.room-side img,
+.room-detail > img,
+.page-feature-media,
+.map-embed,
+.gallery-tile img,
+.gallery-tile video,
+.lightbox img,
+.lightbox video,
+.tour-viewer > video,
+.tour-viewer > img,
+.offer-feature > img,
+.home-cta,
+.hero,
+.page-hero,
+.page-hero > video,
+video,
+img {
+  border-radius: 22px;
+}
+
+/* Keep full-bleed hero/media edges flush where they bleed to viewport */
+.hero,
+.page-hero,
+.page-hero > video,
+.home-video,
+.cruise-section,
+.cruise-section > video {
+  border-radius: 0;
+}
+
+/* Let stacked media inside rounded cards clip correctly */
+.gallery-tile,
+.experience-card,
+.room-main,
+.day-visit-media,
+.page-feature-media,
+.offer-feature,
+.tour-viewer,
+.room-detail {
+  overflow: hidden;
+}
+
+/* ---- Forms & inputs ---- */
+input,
+select,
+textarea,
+.booking-form input,
+.booking-form select,
+.booking-panel input,
+.booking-panel select,
+.feature-form input,
+.feature-form select,
+.feature-form textarea,
+.portal-card input,
+.review-form input,
+.review-form select,
+.review-form textarea,
+.assistant-input input,
+.estimator-box input,
+.estimator-box label input {
+  border-radius: 12px;
+}
+
+/* Inline labeled input wrappers (day-visit date row) */
+.day-visit-layout .booking-panel label > span {
+  border-radius: 12px;
+}
+
+/* ---- Pop-ups & assistant ---- */
+.assistant-panel,
+.assistant-launch,
+.lightbox,
+.nav-dropdown-menu,
+.portal-result,
+.reference-success,
+.feature-note {
+  border-radius: 22px;
+}
+
+.assistant-launch {
+  border-radius: 999px;
+}
+
+/* ---- Admin dashboard panels ---- */
+.admin-table,
+.admin-stat-grid,
+.admin-heading,
+.admin-page .btn-outline-dark {
+  border-radius: 18px;
+}
+
+.admin-table-wrap {
+  overflow: hidden;
+}
+
+.admin-table th,
+.admin-table td {
+  border-radius: 0;
+}
+
+/* ---- Misc small elements ---- */
+.brand img,
+.footer-brand img,
+.assistant-avatar,
+.photo-stamp,
+.intro-mark,
+.map-pin svg {
+  border-radius: 50%;
+}
+
+.status-pill {
+  border-radius: 999px;
+}
+
+/* ---- Mobile menu dropdown panel ---- */
+.nav-dropdown-menu {
+  border-radius: 16px;
+}
+
+@media (max-width: 760px) {
+  .nav-dropdown-menu {
+    border-radius: 12px;
+  }
+  .gallery-tile,
+  .experience-card,
+  .intro-image,
+  .room-detail,
+  .package-card,
+  .info-card {
+    border-radius: 16px;
+  }
+}
+
+/* =========================================================
+   07. FIX OVERLAPPING BACK-TO-TOP AND ASSISTANT BUTTONS
+   ========================================================= */
+.back-top {
+  right: auto !important;
+  left: 25px !important;
+  bottom: 25px !important;
+  z-index: 50 !important;
+}
+
+@media (max-width: 760px) {
+  .back-top {
+    left: 14px !important;
+    bottom: 16px !important;
+    width: 44px;
+    height: 44px;
+  }
+}
